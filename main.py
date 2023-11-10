@@ -1,7 +1,7 @@
 from addressbook import Record, AddressBook
 from datetime import datetime
 import re
-from mainnote import OPERATORS
+from mainNOTE import OPERATORS
 file_name = "book.bin"
 book = AddressBook()
 book.load(file_name)
