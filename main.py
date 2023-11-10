@@ -1,7 +1,9 @@
 from addressbook import Record, AddressBook
 from datetime import datetime
 import re
-from mainNOTE import OPERATORS
+from mainNOTE import OPERATORS, note_book
+
+
 file_name = "book.bin"
 book = AddressBook()
 book.load(file_name)
@@ -134,6 +136,7 @@ def unknown(*args):
 
 def func_good_bye(*args):
     book.save(file_name)
+    note_book.save_data()
     print(f"Good bye!")
     exit()
 

@@ -1,8 +1,6 @@
-"""  
-Тут реалізований сам клас
-"""
 from collections import UserDict, OrderedDict
-
+from pathlib import Path
+import pickle
 class NoteBook(UserDict):
     
     def add_note(self, title, text, tags=None):
@@ -17,9 +15,14 @@ class NoteBook(UserDict):
             if new_tags is not None:
                 self.data[title]['tags'] = new_tags
     
-    def delete_note(self, title):
+    def delete_note(self, title=None):
         if title in self.data:
             del self.data[title]
+            return f"Note {title} has deleted"
+        if not title:
+            self.data.clear()
+            return "All notes have been deleted"
+
 
     def search_notes(self, keyword):
         page = ''
@@ -47,3 +50,19 @@ class NoteBook(UserDict):
             for title, note in self.data.items():
                 result += "\n<<<{}>>>\n{}\ntags: {}\n".format(title, note['text'], note['tags'])
             return result
+    
+    def save_data(self):
+        file_name = 'notes.bin'
+        with open(file_name, 'wb') as fh:
+            pickle.dump(self.data, fh)
+
+    def load_data(self):
+        file_name = 'notes.bin'
+        if Path(file_name).is_file():
+            with open(file_name, 'rb') as fh:
+                self.data = pickle.load(fh)
+        else:
+            print ('"notes.bin" has not loaded')
+            return 
+        
+    
