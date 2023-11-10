@@ -1,7 +1,7 @@
 from addressbook import Record, AddressBook
 from datetime import datetime
 import re
-
+from mainnote import OPERATORS
 file_name = "book.bin"
 book = AddressBook()
 book.load(file_name)
@@ -155,19 +155,25 @@ FUNCTIONS = {
 
 
 def parser(text: str):
+    for func in OPERATORS.keys():
+        if text.startswith(func):
+            return func, text[len(func) :].strip().split()
+        
     for func in FUNCTIONS.keys():
         if text.startswith(func):
             return func, text[len(func) :].strip().split()
-    return unknown, []
-
+    
 
 def main():
     while True:
         user_input = input(">>>")
         func, data = parser(user_input.lower())
-        current_func = FUNCTIONS.get(func)
-        print(current_func(*data))
-
+        if func in FUNCTIONS:
+            current_func = FUNCTIONS.get(func)
+            print(current_func(*data))
+        elif func in OPERATORS:
+            current_func = OPERATORS.get(func)
+            print(current_func(*data))
 
 if __name__ == "__main__":
     main()
