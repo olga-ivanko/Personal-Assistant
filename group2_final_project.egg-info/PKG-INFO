@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: group2-final-project
+Version: 0.1.1
+Summary: cli assistant to save and manage adressbook and notes
+Author: group2_GoIt_students
+Requires-Dist: prompt_toolkit

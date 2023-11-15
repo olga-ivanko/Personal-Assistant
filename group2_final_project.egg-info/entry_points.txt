@@ -1,0 +1,2 @@
+[console_scripts]
+pj1 = group2.main:main

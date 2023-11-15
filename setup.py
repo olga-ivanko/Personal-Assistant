@@ -1,7 +1,7 @@
 from setuptools import setup
 setup(
-    name='group2_final project',
-    version='0.1.0',
+    name='group2_final_project',
+    version='0.1.1',
     description='cli assistant to save and manage adressbook and notes',
     author='group2_GoIt_students',
     py_modules=['group2.addressbook', 'group2.birthday_functions', 'group2.main', 'group2.notebook', 
